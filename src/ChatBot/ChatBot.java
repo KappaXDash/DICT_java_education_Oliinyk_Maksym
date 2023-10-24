@@ -26,5 +26,24 @@ public class ChatBot {
         int userNumber = scanner.nextInt();
         for (int i = 1; i <= userNumber; i++)
             System.out.println(i + " !");
+
+        System.out.println("Choose correct answer!");
+        System.out.println("1. russians are humans");
+        System.out.println("2. russians are orcs");
+        System.out.println("3. russians are slavs");
+        System.out.println("4. russians are freedom-loving");
+
+        int correctAnswer = 2;
+        int userAnswer;
+
+        do {
+            userAnswer = scanner.nextInt();
+
+            if (userAnswer != correctAnswer) {
+                System.out.println("Wrong");
+            }
+        } while (userAnswer != correctAnswer);
+
+        System.out.println("Correct\nGoodbye, have a nice day!");
     }
 }
