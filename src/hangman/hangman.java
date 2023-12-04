@@ -13,7 +13,12 @@ public class hangman {
         int randomIndex = random.nextInt(words.length);
         String secretWord = words[randomIndex];
 
-        System.out.print("Guess the word:> ");
+        StringBuilder hint = new StringBuilder(secretWord.substring(0, 2));
+        for (int i = 2; i < secretWord.length(); i++) {
+            hint.append("-");
+        }
+
+        System.out.print("Guess the word " + hint + ": > ");
 
         Scanner scanner = new Scanner(System.in);
         String userGuess = scanner.nextLine();
