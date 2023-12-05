@@ -3,9 +3,9 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class hangman {
+
     public static void main(String[] args) {
         System.out.println("HANGMAN");
-        System.out.println("The game will be available soon.");
 
         String[] words = {"python", "java", "javascript", "kotlin"};
 
@@ -13,21 +13,44 @@ public class hangman {
         int randomIndex = random.nextInt(words.length);
         String secretWord = words[randomIndex];
 
-        StringBuilder hint = new StringBuilder(secretWord.substring(0, 2));
-        for (int i = 2; i < secretWord.length(); i++) {
-            hint.append("-");
-        }
+        int attemptsLeft = 8;
 
-        System.out.print("Guess the word " + hint + ": > ");
+        char[] guessedWord = new char[secretWord.length()];
+        for (int i = 0; i < secretWord.length(); i++) {
+            guessedWord[i] = '-';
+        }
 
         Scanner scanner = new Scanner(System.in);
-        String userGuess = scanner.nextLine();
 
-        if (userGuess.equalsIgnoreCase(secretWord)) {
-            System.out.println("You survived!");
-        } else {
-            System.out.println("You lost!");
+        while (attemptsLeft > 0) {
+            System.out.println(new String(guessedWord));
+
+            System.out.print("Input a letter:> ");
+
+            char userGuess = scanner.next().charAt(0);
+
+            boolean letterGuessed = false;
+
+            for (int i = 0; i < secretWord.length(); i++) {
+                if (secretWord.charAt(i) == userGuess) {
+                    guessedWord[i] = userGuess;
+                    letterGuessed = true;
+                }
+            }
+
+            if (letterGuessed) {
+            } else {
+                System.out.println("That letter doesn't appear in the word");
+                attemptsLeft--;
+            }
+
+            if (new String(guessedWord).equals(secretWord)) {
+                System.out.println("Thanks for playing!\n" +
+                        "We'll see how well you did in the next stage");
+                break;
+            }
         }
+
         scanner.close();
     }
 }
