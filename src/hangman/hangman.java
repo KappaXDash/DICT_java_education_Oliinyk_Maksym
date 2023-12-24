@@ -37,7 +37,7 @@ public class hangman {
 
                 if (attemptsLeft > 0) {
                     System.out.println("No improvements");
-                }
+            }
             }
 
             if (guessedWord(secretWord, guessedLetters)) {
@@ -46,7 +46,11 @@ public class hangman {
                 break;
             }
         }
+        if (attemptsLeft == 0) {
+            System.out.println("You lost!");
+        }
     }
+
 
     private static void displayCurrentWord(String secretWord, boolean[] guessedLetters) {
         for (char letter : secretWord.toCharArray()) {
